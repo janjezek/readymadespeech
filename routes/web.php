@@ -2,10 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WeddingSpeechController;
-
-Route::get('/generate-wedding-speech', [WeddingSpeechController::class, 'generateSpeech']);
-
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +17,9 @@ Route::get('/generate-wedding-speech', [WeddingSpeechController::class, 'generat
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/form', 'App\Http\Controllers\OpenAIController@showForm');
+Route::post('/submit', 'App\Http\Controllers\OpenAIController@handleSubmit');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
