@@ -9,6 +9,7 @@ class WeddingSpeechController extends Controller
 {
     public function generateSpeech(Request $request)
     {
+        /* OpenAI
         $apiKey = env('OPENAI_API_KEY');
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey
@@ -21,6 +22,22 @@ class WeddingSpeechController extends Controller
                 ]
             ],
         ]);
+        */
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            // Add the Authorization header if needed, for example:
+            // 'Authorization' => 'Bearer ' . $apiKey,
+        ])->post('http://localhost:1234/v1/chat/completions', [
+            "messages" => [
+                ["role" => "system", "content" => "Always answer in rhymes."],
+                ["role" => "user", "content" => "Introduce yourself."]
+            ],
+            "temperature" => 0.7,
+            "max_tokens" => -1,
+            "stream" => false
+        ]);
+
 
         return $response->json();
 
