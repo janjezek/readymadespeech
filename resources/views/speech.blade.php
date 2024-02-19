@@ -82,7 +82,9 @@
             <div class="container content-space-t-3 content-space-t-lg-5 content-space-b-2">
                 <div class="w-md-75 w-lg-50 text-center mx-md-auto">
                     <h1>Your Best Man Speech</h1>
-                    <p>{{ $speech }}</p>
+                    @foreach($speech as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                    @endforeach
                 </div>
             </div>
         </div>

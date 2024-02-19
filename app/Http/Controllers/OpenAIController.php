@@ -34,6 +34,7 @@ class OpenAIController extends Controller
 
         $data = $response->json();
         $speechText = $data['choices'][0]['message']['content'] ?? 'Sorry, I was unable to generate a speech.';
+        $speechText = explode("\n", $speechText); // Splitting the text into paragraphs
         return view('speech')->with('speech', $speechText);
     }
 }
