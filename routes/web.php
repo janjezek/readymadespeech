@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/form', 'App\Http\Controllers\OpenAIController@showForm');
+Route::get('/best-man-speech', 'App\Http\Controllers\OpenAIController@showForm');
 Route::post('/submit', 'App\Http\Controllers\OpenAIController@handleSubmit');
 
 Route::get('/dashboard', function () {
