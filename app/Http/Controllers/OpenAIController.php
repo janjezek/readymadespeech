@@ -17,6 +17,8 @@ class OpenAIController extends Controller
     {
         $husband = $request->input('husband');
         $wife = $request->input('wife');
+        $style = $request->input('style');
+        $details = $request->input('details');
 
         $response = Http::timeout(60)->withHeaders([ // Increase timeout to 60 seconds
             'Content-Type' => 'application/json',
@@ -25,9 +27,9 @@ class OpenAIController extends Controller
         ])->post('http://localhost:1234/v1/chat/completions', [
             "messages" => [
                 ["role" => "system", "content" => "You are speech writer and you are writing a speech for a wedding."],
-                ["role" => "user", "content" => "Write a heartfelt wedding speech that best man will give. Husbands name is $husband and wifes name is $wife."]
+                ["role" => "user", "content" => "Write a heartfelt wedding speech that best man will give. Husbands name is $husband and wifes name is $wife. Use $style tone. Use these provided details to make the speech more personal: $details"]
             ],
-            "temperature" => 0.7,
+            "temperature" => 0.8,
             "max_tokens" => -1,
             "stream" => false
         ]);
